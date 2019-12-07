@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+    <properties resource = "generator.properties"/>
+    <classPathEntry location="D:\apache_maven_repository\com\oracle\ojdbc6\11.2.0.1.0\ojdbc6-11.2.0.1.0.jar" />
+    <context id="my" targetRuntime="MyBatis3">
+       
+       <commentGenerator type="com.moodle.util.MyCommentGenerator">
+        	<property name="suppressAllComments" value="false"/><!-- 是否不生成注释 -->
+        	<property name="suppressDate" value="false"/><!-- 是否不生成时间 -->
+        	<property name="addRemarkComments" value="true"/><!-- 是否添加数据库内的注释 -->
+       </commentGenerator>
+       
+       <jdbcConnection driverClass="${db.driver}" connectionURL="${db.url}" userId="${db.username}" password="${db.password}">
+       	<property name="remarksReporting" value="true"></property>
+       </jdbcConnection>
+       
+       
+       <javaTypeResolver type="com.moodle.util.MyJdbcTypeResolver">
+       		<property name="forceBigDecimals" value="false"/>
+       </javaTypeResolver>
+       <!-- 生成model模型，设置对应的包名(targetPackage)和存放路径(targetProject)。targetProject可以指定具体的路径,如./src/main/java,也可以使用MAVEN来自动生成,这样生成的代码会在target/generatord-source目录下 -->
+       <javaModelGenerator targetPackage="com.moodle.db.entity" targetProject="./src/main/java">
+            <!-- 是否在当前路径下新加一层schema,eg：false路径com.oop.eksp.user.model 而true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 继承基类 -->
+            <property name="rootClass" value="BaseEntity"/>
+        </javaModelGenerator>
+        
+        <!--对应的mapper.xml文件 -->
+        <sqlMapGenerator targetPackage="com.moodle.db.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 对应的Mapper接口类文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.moodle.db.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        
+       <table tableName="mdl_user" domainObjectName="User"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+     </context>
+</generatorConfiguration>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodle.db.mapper.UserInfoCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.moodle.db.entity.UserInfoCategory">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="OTHER" property="name" />
+    <result column="SORTORDER" jdbcType="DECIMAL" property="sortorder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, SORTORDER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MDL_USER_INFO_CATEGORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from MDL_USER_INFO_CATEGORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.moodle.db.entity.UserInfoCategory">
+    insert into MDL_USER_INFO_CATEGORY (ID, NAME, SORTORDER
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=OTHER}, #{sortorder,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.moodle.db.entity.UserInfoCategory">
+    insert into MDL_USER_INFO_CATEGORY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sortorder != null">
+        SORTORDER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=OTHER},
+      </if>
+      <if test="sortorder != null">
+        #{sortorder,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.moodle.db.entity.UserInfoCategory">
+    update MDL_USER_INFO_CATEGORY
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=OTHER},
+      </if>
+      <if test="sortorder != null">
+        SORTORDER = #{sortorder,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.moodle.db.entity.UserInfoCategory">
+    update MDL_USER_INFO_CATEGORY
+    set NAME = #{name,jdbcType=OTHER},
+      SORTORDER = #{sortorder,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

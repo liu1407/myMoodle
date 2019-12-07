@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodle.db.mapper.UserEnrolmentsMapper">
+  <resultMap id="BaseResultMap" type="com.moodle.db.entity.UserEnrolments">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="ENROL_ID" jdbcType="DECIMAL" property="enrolId" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="TIME_START" jdbcType="DECIMAL" property="timeStart" />
+    <result column="TIME_END" jdbcType="DECIMAL" property="timeEnd" />
+    <result column="MODIFIER_ID" jdbcType="DECIMAL" property="modifierId" />
+    <result column="TIME_CREATED" jdbcType="DECIMAL" property="timeCreated" />
+    <result column="TIME_MODIFIED" jdbcType="DECIMAL" property="timeModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STATUS, ENROL_ID, USER_ID, TIME_START, TIME_END, MODIFIER_ID, TIME_CREATED, TIME_MODIFIED
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MDL_USER_ENROLMENTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from MDL_USER_ENROLMENTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.moodle.db.entity.UserEnrolments">
+    insert into MDL_USER_ENROLMENTS (ID, STATUS, ENROL_ID, 
+      USER_ID, TIME_START, TIME_END, 
+      MODIFIER_ID, TIME_CREATED, TIME_MODIFIED
+      )
+    values (#{id,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}, #{enrolId,jdbcType=DECIMAL}, 
+      #{userId,jdbcType=DECIMAL}, #{timeStart,jdbcType=DECIMAL}, #{timeEnd,jdbcType=DECIMAL}, 
+      #{modifierId,jdbcType=DECIMAL}, #{timeCreated,jdbcType=DECIMAL}, #{timeModified,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.moodle.db.entity.UserEnrolments">
+    insert into MDL_USER_ENROLMENTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="enrolId != null">
+        ENROL_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="timeStart != null">
+        TIME_START,
+      </if>
+      <if test="timeEnd != null">
+        TIME_END,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="timeCreated != null">
+        TIME_CREATED,
+      </if>
+      <if test="timeModified != null">
+        TIME_MODIFIED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="enrolId != null">
+        #{enrolId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="timeStart != null">
+        #{timeStart,jdbcType=DECIMAL},
+      </if>
+      <if test="timeEnd != null">
+        #{timeEnd,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=DECIMAL},
+      </if>
+      <if test="timeCreated != null">
+        #{timeCreated,jdbcType=DECIMAL},
+      </if>
+      <if test="timeModified != null">
+        #{timeModified,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.moodle.db.entity.UserEnrolments">
+    update MDL_USER_ENROLMENTS
+    <set>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="enrolId != null">
+        ENROL_ID = #{enrolId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="timeStart != null">
+        TIME_START = #{timeStart,jdbcType=DECIMAL},
+      </if>
+      <if test="timeEnd != null">
+        TIME_END = #{timeEnd,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=DECIMAL},
+      </if>
+      <if test="timeCreated != null">
+        TIME_CREATED = #{timeCreated,jdbcType=DECIMAL},
+      </if>
+      <if test="timeModified != null">
+        TIME_MODIFIED = #{timeModified,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.moodle.db.entity.UserEnrolments">
+    update MDL_USER_ENROLMENTS
+    set STATUS = #{status,jdbcType=DECIMAL},
+      ENROL_ID = #{enrolId,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      TIME_START = #{timeStart,jdbcType=DECIMAL},
+      TIME_END = #{timeEnd,jdbcType=DECIMAL},
+      MODIFIER_ID = #{modifierId,jdbcType=DECIMAL},
+      TIME_CREATED = #{timeCreated,jdbcType=DECIMAL},
+      TIME_MODIFIED = #{timeModified,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
