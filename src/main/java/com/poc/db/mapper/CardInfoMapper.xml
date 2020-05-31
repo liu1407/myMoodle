@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poc.db.mapper.CardInfoMapper">
+  <resultMap id="BaseResultMap" type="com.poc.db.entity.CardInfo">
+    <id column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="TOTAL_CRLMT" jdbcType="DECIMAL" property="totalCrlmt" />
+    <result column="REMAIN_CRLMT" jdbcType="DECIMAL" property="remainCrlmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CARD_NO, USER_NAME, TOTAL_CRLMT, REMAIN_CRLMT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CARD_INFO
+    where CARD_NO = #{cardNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CARD_INFO
+    where CARD_NO = #{cardNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.poc.db.entity.CardInfo">
+    insert into CARD_INFO (CARD_NO, USER_NAME, TOTAL_CRLMT, 
+      REMAIN_CRLMT)
+    values (#{cardNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{totalCrlmt,jdbcType=DECIMAL}, 
+      #{remainCrlmt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.poc.db.entity.CardInfo">
+    insert into CARD_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cardNo != null">
+        CARD_NO,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="totalCrlmt != null">
+        TOTAL_CRLMT,
+      </if>
+      <if test="remainCrlmt != null">
+        REMAIN_CRLMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCrlmt != null">
+        #{totalCrlmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remainCrlmt != null">
+        #{remainCrlmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.poc.db.entity.CardInfo">
+    update CARD_INFO
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCrlmt != null">
+        TOTAL_CRLMT = #{totalCrlmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remainCrlmt != null">
+        REMAIN_CRLMT = #{remainCrlmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CARD_NO = #{cardNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.poc.db.entity.CardInfo">
+    update CARD_INFO
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      TOTAL_CRLMT = #{totalCrlmt,jdbcType=DECIMAL},
+      REMAIN_CRLMT = #{remainCrlmt,jdbcType=DECIMAL}
+    where CARD_NO = #{cardNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

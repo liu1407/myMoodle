@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poc.db.mapper.TradeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.poc.db.entity.TradeInfo">
+    <id column="SERL_NO" jdbcType="VARCHAR" property="serlNo" />
+    <result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+    <result column="AMONT" jdbcType="DECIMAL" property="amont" />
+    <result column="TRADE_DATE" jdbcType="VARCHAR" property="tradeDate" />
+    <result column="TRADE_TIME" jdbcType="VARCHAR" property="tradeTime" />
+    <result column="TRADE_CODE" jdbcType="VARCHAR" property="tradeCode" />
+    <result column="TRADE_STATUS_FLAG" jdbcType="VARCHAR" property="tradeStatusFlag" />
+    <result column="DESCR" jdbcType="VARCHAR" property="descr" />
+    <result column="TRADE_TYPE" jdbcType="VARCHAR" property="tradeType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SERL_NO, CARD_NO, AMONT, TRADE_DATE, TRADE_TIME, TRADE_CODE, TRADE_STATUS_FLAG, DESCR, 
+    TRADE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TRADE_INFO
+    where SERL_NO = #{serlNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TRADE_INFO
+    where SERL_NO = #{serlNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.poc.db.entity.TradeInfo">
+    insert into TRADE_INFO (SERL_NO, CARD_NO, AMONT, 
+      TRADE_DATE, TRADE_TIME, TRADE_CODE, 
+      TRADE_STATUS_FLAG, DESCR, TRADE_TYPE
+      )
+    values (#{serlNo,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{amont,jdbcType=DECIMAL}, 
+      #{tradeDate,jdbcType=VARCHAR}, #{tradeTime,jdbcType=VARCHAR}, #{tradeCode,jdbcType=VARCHAR}, 
+      #{tradeStatusFlag,jdbcType=VARCHAR}, #{descr,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.poc.db.entity.TradeInfo">
+    insert into TRADE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serlNo != null">
+        SERL_NO,
+      </if>
+      <if test="cardNo != null">
+        CARD_NO,
+      </if>
+      <if test="amont != null">
+        AMONT,
+      </if>
+      <if test="tradeDate != null">
+        TRADE_DATE,
+      </if>
+      <if test="tradeTime != null">
+        TRADE_TIME,
+      </if>
+      <if test="tradeCode != null">
+        TRADE_CODE,
+      </if>
+      <if test="tradeStatusFlag != null">
+        TRADE_STATUS_FLAG,
+      </if>
+      <if test="descr != null">
+        DESCR,
+      </if>
+      <if test="tradeType != null">
+        TRADE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serlNo != null">
+        #{serlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amont != null">
+        #{amont,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeDate != null">
+        #{tradeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeCode != null">
+        #{tradeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatusFlag != null">
+        #{tradeStatusFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.poc.db.entity.TradeInfo">
+    update TRADE_INFO
+    <set>
+      <if test="cardNo != null">
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amont != null">
+        AMONT = #{amont,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeDate != null">
+        TRADE_DATE = #{tradeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null">
+        TRADE_TIME = #{tradeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeCode != null">
+        TRADE_CODE = #{tradeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatusFlag != null">
+        TRADE_STATUS_FLAG = #{tradeStatusFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        DESCR = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERL_NO = #{serlNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.poc.db.entity.TradeInfo">
+    update TRADE_INFO
+    set CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      AMONT = #{amont,jdbcType=DECIMAL},
+      TRADE_DATE = #{tradeDate,jdbcType=VARCHAR},
+      TRADE_TIME = #{tradeTime,jdbcType=VARCHAR},
+      TRADE_CODE = #{tradeCode,jdbcType=VARCHAR},
+      TRADE_STATUS_FLAG = #{tradeStatusFlag,jdbcType=VARCHAR},
+      DESCR = #{descr,jdbcType=VARCHAR},
+      TRADE_TYPE = #{tradeType,jdbcType=VARCHAR}
+    where SERL_NO = #{serlNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

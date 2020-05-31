@@ -21,7 +21,7 @@
 	<!-- 开启mvc的注解模式 user 还会注册一个ConversionService 子类FormattingConversionServiceFactoryBean-->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
-			<bean class="com.moodle.core.UTF8StringHttpMessageConverter">
+			<bean class="com.poc.core.UTF8StringHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
 						<value>text/plain;charset=UTF-8</value>
@@ -58,7 +58,7 @@
 	</mvc:annotation-driven>
 	
 	<!-- 扫包 -->
-	<context:component-scan base-package="com.moodle.controller"></context:component-scan>
+	<context:component-scan base-package="com.poc.controller"></context:component-scan>
 	
 	<!--对静态资源文件的访问  必须要设置，因为在springmvc的配置中配置了/匹配所有请求，
 	此工程所有的请求(.do ,addUser,js/image/css)都会被springmvc解析,
@@ -75,7 +75,7 @@
 			<!-- 这个是设置不会进入拦截器的路径 -->
 			<mvc:exclude-mapping path="/resource/**"/>
 			<!-- 拦截器进入的类，返回false表示不会进入输入的路径 -->
-			<bean class="com.moodle.core.filter.LoginInterceptor" />
+			<bean class="com.poc.core.filter.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

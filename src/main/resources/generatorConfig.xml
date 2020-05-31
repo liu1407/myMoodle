@@ -25,7 +25,7 @@
        		<property name="forceBigDecimals" value="false"/>
        </javaTypeResolver>
        <!-- 生成model模型，设置对应的包名(targetPackage)和存放路径(targetProject)。targetProject可以指定具体的路径,如./src/main/java,也可以使用MAVEN来自动生成,这样生成的代码会在target/generatord-source目录下 -->
-       <javaModelGenerator targetPackage="com.moodle.db.entity" targetProject="./src/main/java">
+       <javaModelGenerator targetPackage="com.poc.db.entity" targetProject="./src/main/java">
             <!-- 是否在当前路径下新加一层schema,eg：false路径com.oop.eksp.user.model 而true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="false"/>
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -35,17 +35,17 @@
         </javaModelGenerator>
         
         <!--对应的mapper.xml文件 -->
-        <sqlMapGenerator targetPackage="com.moodle.db.mapper" targetProject="./src/main/java">
+        <sqlMapGenerator targetPackage="com.poc.db.mapper" targetProject="./src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 对应的Mapper接口类文件 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.moodle.db.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.poc.db.mapper"
                              targetProject="./src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         
-       <table tableName="mdl_user" domainObjectName="User"
+       <table tableName="CARD_INFO" domainObjectName="CardInfo"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>

@@ -16,11 +16,11 @@
   ">
 	
 	<!-- 配置包扫描 -->
-	<context:component-scan base-package="com.moodle.*" />
+	<context:component-scan base-package="com.poc.*" />
 	
 	<!-- 导入外部资源文件 -->
 	 <!-- <context:property-placeholder location="classpath:jdbc.properties" />  -->
-	 <bean class="com.moodle.core.des.EncryptPropertyPlaceholderConfigurer"
+	 <bean class="com.poc.core.des.EncryptPropertyPlaceholderConfigurer"
 	 	p:location="classpath:jdbc.properties" p:fileEncoding="utf-8" />
 	
 	<!-- proxool连接池 -->
@@ -66,7 +66,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-		<property name="mapperLocations" value="classpath:com/moodle/db/mapper/*/*.xml"></property>
+		<property name="mapperLocations" value="classpath:com/poc/db/mapper/*.xml"></property>
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
@@ -74,7 +74,7 @@
 	<!-- 配置可以整体扫描Mapper的一个扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--如果有多个报路径,用逗号分开即可  -->
-		<property name="basePackage" value="com.moodle.db.mapper"></property>
+		<property name="basePackage" value="com.poc.db.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
