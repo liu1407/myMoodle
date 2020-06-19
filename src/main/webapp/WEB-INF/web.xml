@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
-	<display-name>poc</display-name>
+	<display-name>moodle</display-name>
 	<welcome-file-list>
 		<welcome-file>index</welcome-file>
 	</welcome-file-list>
@@ -13,7 +13,7 @@
 	</context-param>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>poc.root</param-value>
+		<param-value>moodle.root</param-value>
 	</context-param>
 	
 	<context-param>
@@ -51,7 +51,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<servlet>
-		<servlet-name>poc</servlet-name>
+		<servlet-name>moodle</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -59,11 +59,11 @@
 		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>poc</servlet-name>
+		<servlet-name>moodle</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>poc</servlet-name>
+		<servlet-name>moodle</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
